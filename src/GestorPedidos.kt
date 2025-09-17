@@ -38,6 +38,22 @@ fun mostrarResumen
 
     println("Resumen del Pedido")
 
+    productos.forEachIndexed { index, prod ->
+
+        println("- ${prod.nombre}: $${"%,d".format(precios[index])}")
+
+    }
+
+    println("Subtotal: $${"%,d".format(subtotal)}")
+
+    println("Descuento ${tipoClinte.name} (${(tipoClinte.descuento * 100).roundToInt()}%): -$${"%,d".format(descuento)}")
+
+    println("IVA (19%): $${"%,d".format(iva)}")
+
+    println("TOTAL: $${"%,d".format(total)}")
+
+    println("Estado final: ${estadoFinal::class.simpleName}")
+
             }
 
 suspend fun procesarPedido(productos: List<Producto>): EstadoPedido{
