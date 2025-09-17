@@ -25,15 +25,17 @@ fun main() = runBlocking{
     }
 
     println("Cliente tipo (regular/vip/premium): ")
-    val tipoString = readLine()?.trim()?.uppercase()
-    val tipoCliente = try {
-        TipoCliente.valueOf(tipoString?: "Regular")
-    }catch (e: Exception){
-        println("Tipo de cliente invalido, se usara Regular")
-        TipoCliente.regular
+    val tipoString = when (readLine()?.trim()?.lowercase()){
+        "regular" -> TipoCliente.regular
+        "vip" -> TipoCliente.vip
+        "premium" -> TipoCliente.premium
+        else -> {
+            println("Tipo de cliente invalido, se usara REGULAR")
+            TipoCliente.regular
+        }
     }
 
     println("Procesando pedido...")
     val estadoFinal = procesarPedido(seleccion)
-    mostrarResumen(seleccion, tipoCliente, estadoFinal)
+    mostrarResumen(seleccion, tipoString, estadoFinal)
 }
