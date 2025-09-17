@@ -13,7 +13,7 @@ open class Producto
 class Comida
     (nombre: String,
             precio: Int,
-            val premium: Boolean): Producto("Cazuela",9990, "Comida", 5){
+            val premium: Boolean): Producto(nombre, precio, "Comida", 5){
     override fun calcularPrecio(): Int{
         return if (premium) (precio*1.2).toInt()
                 else precio
@@ -26,7 +26,7 @@ enum class Tamaño{
 class Bebida
     (nombre: String,
             precio: Int,
-            val tamaño: Tamaño): Producto("Sprite", 1990, "Bebida", 2){
+            val tamaño: Tamaño): Producto(nombre, precio, "Bebida", 2){
     override fun calcularPrecio(): Int {
         return when (tamaño){
             Tamaño.pequeño -> precio
