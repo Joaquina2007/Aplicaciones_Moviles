@@ -28,11 +28,11 @@ fun calcularIva(monto: Int): Int{
 
 fun mostrarResumen
             (productos: List<Producto>,
-             tipoClinte: TipoCliente,
+             tipoCliente: TipoCliente,
              estadoFinal: EstadoPedido){
                 val precios = productos.map { it.calcularPrecio() }
                 val subtotal = precios.sum()
-                val descuento = aplicarDescuento(subtotal, tipoClinte)
+                val descuento = aplicarDescuento(subtotal, tipoCliente)
                 val iva = calcularIva(subtotal-descuento)
                 val total = subtotal-descuento+iva
 
@@ -46,7 +46,7 @@ fun mostrarResumen
 
     println("Subtotal: $${"%,d".format(subtotal)}")
 
-    println("Descuento ${tipoClinte.name} (${(tipoClinte.descuento * 100).roundToInt()}%): -$${"%,d".format(descuento)}")
+    println("Descuento ${tipoCliente.name} (${(tipoCliente.descuento * 100).roundToInt()}%): -$${"%,d".format(descuento)}")
 
     println("IVA (19%): $${"%,d".format(iva)}")
 
